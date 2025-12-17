@@ -220,7 +220,7 @@ body {
 .hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 90vh;
+  min-height: auto;
   align-items: center;
   gap: 60px;
   padding: 80px 20px;
@@ -371,6 +371,7 @@ body {
 .bestsellers {
   padding: 100px 20px;
   background: var(--color-bg-light);
+  padding-top: 40px;
 }
 
 .category-tabs {
