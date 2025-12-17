@@ -1515,3 +1515,26 @@ section {
     text-align: center !important;
   }
 }
+/* === FIX: Recently Viewed not visible on mobile === */
+@media (max-width: 768px) {
+  .recently-viewed {
+    padding-top: 80px !important;
+    padding-bottom: 60px !important;
+    background: #faf8f5 !important;
+    display: block !important;
+    position: relative !important;
+    z-index: 5 !important;
+  }
+
+  .products-slider {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .products-slider {
+    grid-template-columns: 1fr !important;
+  }
+}
