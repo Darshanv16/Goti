@@ -1457,4 +1457,18 @@ body {
     padding-top: 80px !important;
   }
 }
+.bestsellers {
+  scroll-margin-top: 140px;
+}
+
+@media (max-width: 768px) {
+  .bestsellers {
+    scroll-margin-top: 160px;
+  }
+}
+@media (max-width: 768px) {
+  .hero {
+    min-height: unset;
+  }
+}
 
