@@ -1452,23 +1452,28 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  .bestsellers {
-    padding-top: 80px !important;
-  }
-}
-.bestsellers {
-  scroll-margin-top: 140px;
+.hero {
+  margin-bottom: 0;
 }
 
-@media (max-width: 768px) {
-  .bestsellers {
-    scroll-margin-top: 160px;
-  }
+.bestsellers {
+  position: relative;
+  z-index: 2;
 }
+
+.bestsellers .section-title {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
 @media (max-width: 768px) {
   .hero {
     min-height: unset;
+    margin-bottom: 40px;
+  }
+
+  .bestsellers {
+    padding-top: 60px !important;
   }
 }
-
