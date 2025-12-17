@@ -169,16 +169,113 @@ newsletterForm.addEventListener("submit", (e) => {
   }
 })
 
-// Add cart functionality
+// Add cart functionality with modal
 const cartToggle = document.querySelector(".cart-toggle")
 const cartCount = document.querySelector(".cart-count")
-let itemCount = 0
+const cartModal = document.querySelector(".cart-modal")
+const cartClose = document.querySelector(".cart-close")
+const cartItemsList = document.querySelector(".cart-items-list")
+const cartTotalPrice = document.querySelector(".cart-total-price")
 
+const cart = []
+
+// Create backdrop element
+const backdrop = document.createElement("div")
+backdrop.className = "cart-backdrop"
+document.body.appendChild(backdrop)
+
+// Toggle cart modal
+cartToggle.addEventListener("click", () => {
+  cartModal.classList.add("active")
+  backdrop.classList.add("active")
+  document.body.style.overflow = "hidden"
+})
+
+// Close cart modal
+cartClose.addEventListener("click", closeCart)
+backdrop.addEventListener("click", closeCart)
+
+function closeCart() {
+  cartModal.classList.remove("active")
+  backdrop.classList.remove("active")
+  document.body.style.overflow = ""
+}
+
+// Update cart display
+function updateCartDisplay() {
+  cartCount.textContent = cart.length
+
+  if (cart.length === 0) {
+    cartItemsList.innerHTML = `
+      <div class="cart-empty">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <p>Your cart is empty</p>
+      </div>
+    `
+    cartTotalPrice.textContent = "₹0"
+    return
+  }
+
+  const cartHTML = cart
+    .map(
+      (item, index) => `
+    <div class="cart-item">
+      <div class="cart-item-image">
+        <img src="${item.image}" alt="${item.name}">
+      </div>
+      <div class="cart-item-details">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">${item.price}</div>
+      </div>
+      <button class="cart-item-remove" data-index="${index}">×</button>
+    </div>
+  `,
+    )
+    .join("")
+
+  cartItemsList.innerHTML = cartHTML
+
+  // Calculate total
+  const total = cart.reduce((sum, item) => {
+    const price = Number.parseInt(item.price.replace(/[₹,]/g, ""))
+    return sum + price
+  }, 0)
+
+  cartTotalPrice.textContent = `₹${total.toLocaleString("en-IN")}`
+
+  // Add remove listeners
+  document.querySelectorAll(".cart-item-remove").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const index = Number.parseInt(e.target.dataset.index)
+      cart.splice(index, 1)
+      updateCartDisplay()
+    })
+  })
+}
+
+// Add to cart functionality
 document.querySelectorAll(".quick-view").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.stopPropagation()
-    itemCount++
-    cartCount.textContent = itemCount
+
+    // Get product details from the card
+    const productCard = btn.closest(".product-card")
+    const productName = productCard.querySelector("h3").textContent
+    const productPrice = productCard.querySelector(".price-current").textContent
+    const productImage = productCard.querySelector(".product-image img").src
+
+    // Add to cart array
+    cart.push({
+      name: productName,
+      price: productPrice,
+      image: productImage,
+    })
+
+    updateCartDisplay()
 
     // Animate cart icon
     cartToggle.style.animation = "none"
@@ -196,6 +293,9 @@ document.querySelectorAll(".quick-view").forEach((btn) => {
     }, 1500)
   })
 })
+
+// Initialize cart display
+updateCartDisplay()
 
 // Lazy loading for images
 if ("IntersectionObserver" in window) {
