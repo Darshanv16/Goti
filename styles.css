@@ -369,7 +369,6 @@ body {
 }
 
 .bestsellers {
-  padding: 100px 20px;
   background: var(--color-bg-light);
   padding-top: 40px;
 }
@@ -1233,7 +1232,7 @@ body {
   }
 }
 
-@media (max-width: 968px) {
+@media (max-width: 768px) {
   .nav-links {
     display: none;
     position: absolute;
@@ -1256,7 +1255,7 @@ body {
 
   .hero {
     grid-template-columns: 1fr;
-    padding: 60px 20px;
+    padding-bottom:24px;
   }
 
   .hero-title {
