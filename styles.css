@@ -1338,7 +1338,7 @@ body {
 
 @media (max-width: 768px) { 
   section.bestsellers {
-    padding: 60px 16px !important;
+    padding: 60px 16px ;
   }
 
   .nav-links {
