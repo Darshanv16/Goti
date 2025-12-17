@@ -1451,3 +1451,10 @@ body {
     font-size: 28px;
   }
 }
+
+@media (max-width: 768px) {
+  .bestsellers {
+    padding-top: 80px !important;
+  }
+}
+
