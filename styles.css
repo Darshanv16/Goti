@@ -1493,3 +1493,25 @@ body {
 section {
   scroll-margin-top: 120px;
 }
+/* === FORCE FIX: Bestseller not visible on mobile === */
+@media (max-width: 768px) {
+  .bestsellers {
+    display: block !important;
+    position: relative !important;
+    z-index: 10 !important;
+    padding-top: 120px !important;
+    padding-bottom: 60px !important;
+    background: #faf8f5 !important;
+    min-height: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .bestsellers .section-title {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    color: #1a1a1a !important;
+    text-align: center !important;
+  }
+}
