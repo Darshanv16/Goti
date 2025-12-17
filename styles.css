@@ -220,7 +220,7 @@ body {
 .hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: auto;
+  min-height: 90vh;
   align-items: center;
   gap: 60px;
   padding: 80px 20px;
@@ -369,8 +369,8 @@ body {
 }
 
 .bestsellers {
+  padding: 100px 20px;
   background: var(--color-bg-light);
-  padding-top: 40px;
 }
 
 .category-tabs {
@@ -1232,7 +1232,7 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 968px) {
   .nav-links {
     display: none;
     position: absolute;
@@ -1255,7 +1255,7 @@ body {
 
   .hero {
     grid-template-columns: 1fr;
-    padding-bottom:24px;
+    padding: 60px 20px;
   }
 
   .hero-title {
